@@ -88,6 +88,18 @@ public class ConfigMapper {
             }
         }
 
+        if (options.hasKey("deviceId")) {
+            config.setDeviceId(options.isNull("deviceId") ? Config.NullString : options.getString("deviceId"));
+        }
+
+        if (options.hasKey("authToken")) {
+            config.setAuthToken(options.isNull("authToken") ? Config.NullString : options.getString("authToken"));
+        }
+
+        if (options.hasKey("authTokenURL")) {
+            config.setAuthTokenURL(options.isNull("authTokenURL") ? Config.NullString : options.getString("authTokenURL"));
+        }
+
         return config;
     }
 
@@ -212,6 +224,31 @@ public class ConfigMapper {
                 out.putNull("postTemplate");
             }
         }
+
+        if (config.getDeviceId() != null) {
+            if (config.getDeviceId() != Config.NullString) {
+                out.putString("deviceId", config.getDeviceId());
+            } else {
+                out.putNull("deviceId");
+            }
+        }
+
+        if (config.getAuthToken() != null) {
+            if (config.getAuthToken() != Config.NullString) {
+                out.putString("authToken", config.getAuthToken());
+            } else {
+                out.putNull("authToken");
+            }
+        }
+
+        if (config.getAuthTokenURL() != null) {
+            if (config.getAuthTokenURL() != Config.NullString) {
+                out.putString("authTokenURL", config.getAuthTokenURL());
+            } else {
+                out.putNull("authTokenURL");
+            }
+        }
+
         return out;
     }
 }
