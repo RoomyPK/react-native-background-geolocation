@@ -100,6 +100,14 @@ public class ConfigMapper {
             config.setAuthTokenURL(options.isNull("authTokenURL") ? Config.NullString : options.getString("authTokenURL"));
         }
 
+        if (options.hasKey("syncInterval")) {
+            config.setSyncInterval(options.getInt("syncInterval"));
+        }
+
+        if (options.hasKey("lastSyncTime")) {
+            config.setLastSyncTime(options.isNull("lastSyncTime") ? Config.NullString : options.getString("lastSyncTime"));
+        }
+
         return config;
     }
 
@@ -246,6 +254,19 @@ public class ConfigMapper {
                 out.putString("authTokenURL", config.getAuthTokenURL());
             } else {
                 out.putNull("authTokenURL");
+            }
+        }
+
+        if (config.getSyncInterval() != null) {
+            out.putInt("syncInterval", config.getSyncInterval());
+        }
+
+        
+        if (config.getLastSyncTime() != null) {
+            if (config.getLastSyncTime() != Config.NullString) {
+                out.putString("lastSyncTime", config.getLastSyncTime());
+            } else {
+                out.putNull("lastSyncTime");
             }
         }
 
