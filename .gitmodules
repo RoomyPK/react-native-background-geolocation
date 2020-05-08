@@ -4,3 +4,4 @@
 [submodule "android-common"]
 	path = android/common
 	url = https://github.com/RoomyPK/background-geolocation-android.git
+	branch = master
